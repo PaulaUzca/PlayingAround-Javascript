@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="link" type="text" placeholder="link">
+    <input id="title" type="text" placeholder="title">
+    <button id="go" onclick="go()">Go</button>
+    <input style="width:100%;" id="output" type="text">
+    <button id="copy" onclick="copy()">Copy</button>
+</body>
+
+<script>
+        var output = document.getElementById("output");
+    function go(){
+        var link = document.getElementById("link").value;
+        var title = document.getElementById("title").value;
+        output.value = writeLine(title, link);
+    }
+    function copy(){
+        output.select();
+        document.execCommand('copy');
+    }
+
+        function writeLine(title, link){
+            let justName = title.split(',')[0] + ",";
+            let restText = title.slice(title.indexOf(",")+1, title.length);
+            let regex = /(20|19)\d{2}-(20|19)\d{2}|(20|19)\d{2}(?=\D)|(20|19)\d{2}$/g;
+            year = title.match(regex)? title.match(regex)[0] : "no year";
+            return `<li class="pdf"><p class="pdf__title" tag="${year}"> <i>${justName}</i>${restText}</p><a class ="pdf__download" href="${link}" target="_blank">PDF</a></li>`
+        }
+
+
+</script>
+</html>
