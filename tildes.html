@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tildes</title>
+</head>
+<body>
+
+    <h1>Corregir errores de tildes copiadas de PDF</h1>
+    <p>Errores de tipo ´a ´o ´ı ˜n...</p>
+    <input type="text" class="texto" placeholder="texto con tildes incorrectas" style = "width:70%">
+    <button class="start" onclick="ponerTildes()">Go!</button>
+    <p></p>
+    <input type="text" class="output" style = "width:70%">
+    <button class="copy" onclick="copy()">Copy</button>
+    
+
+    <script>
+
+        output = document.querySelector(".output");
+
+        function ponerTildes(){
+            let text = document.querySelector(".texto").value;
+            text = text.replace(/˜[n]/g, "ñ");
+            text = text.replace(/´[a]/g , "á");
+            text = text.replace(/´[o]/g , "ó");
+            text = text.replace(/´[e]/g , "é");
+            text = text.replace(/´[ı]/g , "í");
+            text = text.replace(/´[u]/g , "ú");
+
+            output.value = text;
+        }
+
+        function copy(){
+        output.select();
+        document.execCommand('copy');
+    }
+
+    </script>
+</body>
+</html>
